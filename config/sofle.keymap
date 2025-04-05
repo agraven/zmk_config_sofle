@@ -65,7 +65,7 @@
             bindings = <
 &bt BT_CLR  &bt BT_SEL 0     &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_SEL 4                    &trans    &trans      &trans            &trans      &trans         &trans
 &trans      &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp TAB       &trans                          &trans    &trans      &trans            &trans      &trans         &trans
-&kp ESC     &kp INS          &kp HOME        &kp PAGE_UP      &kp RET       &trans                          &kp LEFT  &kp DOWN    &kp UP            &kp RIGHT   &kp BACKSPACE  &trans
+&kp ESC     &kp INS          &kp HOME        &kp PAGE_UP      &kp RET       &kp TAB                         &kp LEFT  &kp DOWN    &kp UP            &kp RIGHT   &kp BACKSPACE  &trans
 &trans      &kp DEL          &kp END         &kp PAGE_DOWN    &kp ESC       &trans        &trans    &trans  &trans    &kp K_BACK  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans         &trans
                              &trans          &trans           &trans        &trans        &trans    &trans  &trans    &trans      &trans            &trans
             >;
