@@ -10,6 +10,15 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
+    behaviors {
+        sensor_scroll_wheel: sensor_scroll_wheel {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "SENSOR_SCROLL_WHEEL";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -22,16 +31,16 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp GRAVE      &kp N1  &kp N2     &kp N3    &kp N4        &kp N5                                  &kp N6     &kp N7         &kp N8     &kp N9     &kp N0    &kp MINUS
-&kp RBKT       &kp Q   &kp W      &kp E     &kp R         &kp T                                   &kp Y      &kp U          &kp I      &kp O      &kp P     &kp LBKT
-&kp BACKSLASH  &kp A   &kp S      &kp D     &kp F         &kp G                                   &kp H      &kp J          &kp K      &kp L      &kp SEMI  &kp SQT
-&kp LSHFT      &kp Z   &kp X      &kp C     &kp V         &kp B     &kp C_MUTE         &mkp MCLK  &kp N      &kp M          &kp COMMA  &kp DOT    &kp FSLH  &kp RSHFT
-                       &kp RCTRL  &kp LALT  &mt LALT ESC  &kp LGUI  &mt LCTRL SPACE    &lt 2 RET  &lt 1 TAB  &kp BACKSPACE  &kp RALT   &kp RCTRL
+&kp GRAVE      &kp N1  &kp N2     &kp N3    &kp N4        &kp N5                                  &kp N6     &kp N7     &kp N8     &kp N9     &kp N0    &kp MINUS
+&kp RBKT       &kp Q   &kp W      &kp E     &kp R         &kp T                                   &kp Y      &kp U      &kp I      &kp O      &kp P     &kp LBKT
+&kp BACKSLASH  &kp A   &kp S      &kp D     &kp F         &kp G                                   &kp H      &kp J      &kp K      &kp L      &kp SEMI  &kp SQT
+&kp LSHFT      &kp Z   &kp X      &kp C     &kp V         &kp B     &kp C_MUTE         &mkp MCLK  &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH  &kp RSHFT
+                       &kp RCTRL  &kp LALT  &mt LALT ESC  &kp LGUI  &mt LCTRL SPACE    &lt 2 RET  &lt 1 TAB  &kp RCTRL  &kp RALT   &kp RCTRL
             >;
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
+                <&sensor_scroll_wheel>;
         };
 
         lower_layer {
@@ -65,12 +74,14 @@
             bindings = <
 &bt BT_CLR  &bt BT_SEL 0     &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_SEL 4                    &trans    &trans      &trans            &trans      &trans         &trans
 &trans      &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAUSE_BREAK  &trans        &trans                          &trans    &trans      &trans            &trans      &trans         &trans
-&kp ESC     &kp INS          &kp HOME        &kp PAGE_UP      &kp RET       &kp SPACE                       &kp LEFT  &kp DOWN    &kp UP            &kp RIGHT   &kp BACKSPACE  &trans
-&trans      &kp DEL          &kp END         &kp PAGE_DOWN    &kp ESC       &trans        &trans    &trans  &trans    &kp K_BACK  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans         &trans
+&kp ESC     &kp INS          &kp HOME        &kp PAGE_UP      &kp ESC       &kp RET                         &kp LEFT  &kp DOWN    &kp UP            &kp RIGHT   &kp BACKSPACE  &trans
+&trans      &kp DEL          &kp END         &kp PAGE_DOWN    &kp SPACE     &trans        &trans    &trans  &trans    &kp K_BACK  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans         &trans
                              &trans          &trans           &trans        &trans        &trans    &trans  &trans    &trans      &trans            &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         layer_3 {
